@@ -1,0 +1,20 @@
+CREATE DATABASE attendance_db;
+USE attendance_db;
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_number VARCHAR (50) UNIQUE NOT NULL,
+    full_name VARCHAR(100),
+    role ENUM('admin', 'student', 'faculty', 'staff') DEFAULT 'student',
+    password VARCHAR(255),
+    is_registered TINYINT DEFAULT 0
+);
+
+CREATE TABLE attendance (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    date DATE NOT NULL,
+    time_in DATETIME,
+    time_out DATETIME,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);    

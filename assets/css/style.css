@@ -1,0 +1,529 @@
+/* ==========================================================
+   style.css
+   Single stylesheet used across all pages.
+   Organized into sections so it's easy to find things.
+   ========================================================== */
+
+/* GLOBAL SETTINGS & VARIABLES */
+:root {
+    --primary:       #103e10;
+    --primary-light: #185a1b; 
+    --accent:        #e8b84b;
+    --bg:            #f4f6fb;
+    --white:         #ffffff;
+    --text:          #1c1c2e;
+    --text-muted:    #6b7280;
+    --border:        #dde3ef;
+    --error:         #dc2626;
+    --error-bg:      #fef2f2;
+    --success:       #16a34a;
+    --success-bg:    #f0fdf4;
+    --shadow:        0 4px 24px rgba(26, 58, 92, 0.10);
+    --radius:        12px;
+    --font-display:  'Syne', sans-serif;
+    --font-body:     'DM Sans', sans-serif;
+}
+
+
+/* ----------------------------------------------------------
+   2. RESET & BASE STYLES
+   ---------------------------------------------------------- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+a {
+    color: var(--primary-light);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: var(--accent);
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+
+/* FOR AUTHENTICATION PAGES (login, register) */
+
+/* Full-screen flex container */
+.auth-page {
+    display: flex;
+    align-items: stretch;
+    min-height: 100vh;
+    background: var(--bg);
+}
+
+.auth-container {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* Both panels share this base */
+.auth-panel {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 2rem;
+}
+
+/* LEFT PANEL — branding/logo */
+.auth-panel--brand {
+    background: var(--primary);
+    position: relative;
+    overflow: hidden;
+    flex: 0 0 42%;   /* Takes up 42% of the screen width */
+}
+
+.brand-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: var(--white);
+    animation: fadeInUp 0.7s ease both;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.brand-logo {
+    width: 200px;
+    margin-bottom: 1.2rem;
+}
+
+.brand-logo img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+    border: 4px solid var(--accent);
+    padding: 4px;
+}
+.brand-title {
+    font-family: var(--font-display);
+    font-size: 2.4rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+    margin-bottom: 0.8rem;
+}
+
+.brand-sub {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.65);
+    font-weight: 300;
+}
+
+/* RIGHT PANEL — the actual form */
+.auth-panel--form {
+    background: var(--white);
+    flex: 1;
+}
+
+.form-box {
+    width: 100%;
+    max-width: 420px;
+    animation: fadeInUp 0.7s 0.15s ease both;
+}
+
+.form-title {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.4rem;
+}
+
+.form-subtitle {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 1.8rem;
+}
+
+
+/* FORM ELEMENTS like inputs and buttons */
+
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.4rem;
+}
+
+/* Wrapper needed for the password toggle button */
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.form-group input,
+.input-wrapper input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--text);
+    background: var(--white);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+}
+
+/* Green border glow when the user clicks into a field */
+.form-group input:focus,
+.input-wrapper input:focus {
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 3px rgba(48, 107, 73, 0.12);
+}
+
+/* Password show/hide toggle button */
+.toggle-pw {
+    position: absolute;
+    right: 0.75rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    color: var(--text-muted); /* lighter color for the toggle icon */
+    padding: 0;
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+.toggle-pw:hover {
+    color: var(--primary);
+}
+
+/* Footer text below form (e.g. "Already have an account?") */
+.form-footer {
+    text-align: center;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-top: 1.4rem;
+}
+
+/* LOOSEN UP MY BUTTONS */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem 1.6rem;
+    border-radius: var(--radius);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+}
+
+/* Primary blue button */
+.btn--primary {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.btn--primary:hover {
+    background: var(--primary-light);
+    box-shadow: 0 4px 16px rgba(26,58,92,0.18);
+}
+
+.btn--primary:active {
+    transform: scale(0.98);
+}
+
+/* Full-width button (used in forms) */
+.btn--full {
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+
+/* ----------------------------------------------------------
+   6. ALERT / MESSAGE BOXES
+   ---------------------------------------------------------- */
+
+.alert {
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius);
+    font-size: 0.9rem;
+    margin-bottom: 1.2rem;
+    border-left: 4px solid;
+}
+
+.alert--error {
+    background: var(--error-bg);
+    color: var(--error);
+    border-color: var(--error);
+}
+
+.alert--success {
+    background: var(--success-bg);
+    color: var(--success);
+    border-color: var(--success);
+}
+
+
+/* ----------------------------------------------------------
+   7. ANIMATIONS
+   ---------------------------------------------------------- */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ----------------------------------------------------------
+   8. DASHBOARD LAYOUT (sidebar + main content)
+   ---------------------------------------------------------- */
+
+.dashboard-page {
+    display: flex;
+    min-height: 100vh;
+    background: var(--bg);
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 240px;
+    min-height: 100vh;
+    background: var(--primary);
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 100;
+}
+
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0 1.4rem 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    color: var(--white);
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.sidebar-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: var(--accent);
+    width: 100%;
+}
+
+.sidebar-brand-icon {
+    display: block;
+    width: 80px;
+    margin-bottom: 0.8rem;
+}
+
+.sidebar-brand-icon img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 50%;
+    border: 3px solid var(--accent);
+    padding: 2px;
+    box-sizing: border-box;
+}
+
+.sidebar-brand-name {
+    line-height: 1.1;
+}
+
+.sidebar-nav {
+    flex: 1;
+    padding: 1rem 0.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.7rem 0.9rem;
+    border-radius: 8px;
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9rem;
+    font-weight: 400;
+    transition: background 0.2s, color 0.2s;
+    text-decoration: none;
+}
+
+.nav-item:hover,
+.nav-item.active {
+    background: rgba(255,255,255,0.12);
+    color: var(--white);
+}
+
+.nav-item.active {
+    font-weight: 500;
+}
+
+.nav-icon {
+    font-size: 0.7rem;
+    color: var(--accent);
+}
+
+.sidebar-logout {
+    margin: 0 0.8rem;
+    padding: 0.7rem 0.9rem;
+    border-radius: 8px;
+    color: rgba(255,255,255,0.5);
+    font-size: 0.85rem;
+    transition: background 0.2s, color 0.2s;
+    text-decoration: none;
+}
+
+.sidebar-logout:hover {
+    background: rgba(220, 38, 38, 0.2);
+    color: #fca5a5;
+}
+
+/* MAIN CONTENT AREA */
+.main-content {
+    margin-left: 240px;   /* Push content past the fixed sidebar */
+    flex: 1;
+    padding: 2rem;
+    min-height: 100vh;
+}
+
+/* PAGE HEADER */
+.page-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 1.8rem;
+}
+
+.page-title {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.page-sub {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-top: 0.2rem;
+}
+
+.header-date {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    padding-top: 0.3rem;
+}
+
+/* STAT CARDS */
+.stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.8rem;
+}
+
+.stat-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 1.4rem;
+    box-shadow: var(--shadow);
+    border-left: 4px solid var(--primary);
+}
+
+.stat-card--accent {
+    border-left-color: var(--accent);
+}
+
+.stat-value {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--primary);
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin-top: 0.4rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* CARDS (white boxes that wrap content) */
+.card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 1.5rem;
+}
+
+.card-title {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 1.2rem;
+}
+
+.card-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+}
+
+.card-header-row .card-title {
+    margin-bottom: 0;
+}
+
+/* TABLES */
