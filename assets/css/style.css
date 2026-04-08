@@ -4,20 +4,24 @@
    Organized into sections so it's easy to find things.
    ========================================================== */
 
-/* GLOBAL SETTINGS & VARIABLES */
+
+/* ----------------------------------------------------------
+   1. CSS VARIABLES (your color theme — change these to match
+      your school colors)
+   ---------------------------------------------------------- */
 :root {
-    --primary:       #103e10;
-    --primary-light: #185a1b; 
-    --accent:        #e8b84b;
-    --bg:            #f4f6fb;
+    --primary:       #103e10;   /* Dark navy blue — main brand color */
+    --primary-light: #185a1b;   /* Lighter blue for hover states */
+    --accent:        #e8b84b;   /* Gold accent — for highlights */
+    --bg:            #f4f6fb;   /* Light grey page background */
     --white:         #ffffff;
-    --text:          #1c1c2e;
-    --text-muted:    #6b7280;
-    --border:        #dde3ef;
-    --error:         #dc2626;
-    --error-bg:      #fef2f2;
-    --success:       #16a34a;
-    --success-bg:    #f0fdf4;
+    --text:          #1c1c2e;   /* Near-black for body text */
+    --text-muted:    #6b7280;   /* Grey for secondary text */
+    --border:        #dde3ef;   /* Light border color */
+    --error:         #dc2626;   /* Red for error messages */
+    --error-bg:      #fef2f2;   /* Light red background for error box */
+    --success:       #16a34a;   /* Green for success messages */
+    --success-bg:    #f0fdf4;   /* Light green background */
     --shadow:        0 4px 24px rgba(26, 58, 92, 0.10);
     --radius:        12px;
     --font-display:  'Syne', sans-serif;
@@ -63,7 +67,10 @@ img {
 }
 
 
-/* FOR AUTHENTICATION PAGES (login, register) */
+/* ----------------------------------------------------------
+   3. AUTH PAGES (login.php and register.php)
+   Two-panel layout: left = branding, right = form
+   ---------------------------------------------------------- */
 
 /* Full-screen flex container */
 .auth-page {
@@ -107,6 +114,7 @@ img {
     align-items: center;
 }
 
+/* The square logo icon */
 .brand-logo {
     width: 200px;
     margin-bottom: 1.2rem;
@@ -119,6 +127,7 @@ img {
     border: 4px solid var(--accent);
     padding: 4px;
 }
+
 .brand-title {
     font-family: var(--font-display);
     font-size: 2.4rem;
@@ -161,7 +170,9 @@ img {
 }
 
 
-/* FORM ELEMENTS like inputs and buttons */
+/* ----------------------------------------------------------
+   4. FORM ELEMENTS (inputs, labels, buttons)
+   ---------------------------------------------------------- */
 
 .form-group {
     margin-bottom: 1.2rem;
@@ -196,11 +207,11 @@ img {
     outline: none;
 }
 
-/* Green border glow when the user clicks into a field */
+/* Blue border glow when the user clicks into a field */
 .form-group input:focus,
 .input-wrapper input:focus {
     border-color: var(--primary-light);
-    box-shadow: 0 0 0 3px rgba(48, 107, 73, 0.12);
+    box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.12);
 }
 
 /* Password show/hide toggle button */
@@ -211,7 +222,7 @@ img {
     border: none;
     cursor: pointer;
     font-size: 1rem;
-    color: var(--text-muted); /* lighter color for the toggle icon */
+    color: var(--text-muted);
     padding: 0;
     line-height: 1;
     transition: color 0.2s;
@@ -229,7 +240,10 @@ img {
     margin-top: 1.4rem;
 }
 
-/* LOOSEN UP MY BUTTONS */
+
+/* ----------------------------------------------------------
+   5. BUTTONS
+   ---------------------------------------------------------- */
 
 .btn {
     display: inline-flex;
@@ -343,15 +357,6 @@ img {
     font-family: var(--font-display);
     font-size: 1.1rem;
     font-weight: 700;
-}
-
-.sidebar-brand {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    color: var(--accent);
-    width: 100%;
 }
 
 .sidebar-brand-icon {
@@ -527,3 +532,545 @@ img {
 }
 
 /* TABLES */
+.table-wrapper {
+    overflow-x: auto;   /* Allows horizontal scroll on small screens */
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.data-table th {
+    text-align: left;
+    padding: 0.6rem 0.8rem;
+    background: var(--bg);
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+    border-bottom: 1px solid var(--border);
+}
+
+.data-table td {
+    padding: 0.75rem 0.8rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    vertical-align: middle;
+}
+
+.data-table tr:last-child td {
+    border-bottom: none;
+}
+
+.data-table tr:hover td {
+    background: #f8faff;
+}
+
+/* BADGES (role labels, status indicators) */
+.badge {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.badge--student  { background: #dbeafe; color: #1d4ed8; }
+.badge--faculty  { background: #ede9fe; color: #6d28d9; }
+.badge--staff    { background: #dcfce7; color: #15803d; }
+.badge--admin    { background: #fee2e2; color: #b91c1c; }
+.badge--success  { background: #dcfce7; color: #15803d; }
+.badge--pending  { background: #fef9c3; color: #a16207; }
+
+/* FORMS inside cards (admin add-user form, filters) */
+.inline-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    align-items: end;
+}
+
+.filter-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: end;
+}
+
+.filter-form .form-group {
+    flex: 1 1 160px;
+    margin-bottom: 0;
+}
+
+.form-group--btn {
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-end;
+    padding-bottom: 0;
+}
+
+/* SELECT (dropdown) styled to match inputs */
+.form-select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--text);
+    background: var(--white);
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.form-select:focus {
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.12);
+}
+
+/* SEARCH FORM in card header */
+.search-form {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.search-form input {
+    padding: 0.55rem 0.9rem;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.search-form input:focus {
+    border-color: var(--primary-light);
+}
+
+/* SMALL BUTTONS */
+.btn--sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+}
+
+/* GHOST BUTTON (outline style) */
+.btn--ghost {
+    background: transparent;
+    border: 1.5px solid var(--border);
+    color: var(--text-muted);
+}
+
+.btn--ghost:hover {
+    background: var(--bg);
+    color: var(--text);
+}
+
+/* DANGER BUTTON (red) */
+.btn--danger {
+    background: #fee2e2;
+    color: var(--error);
+    border: none;
+}
+
+.btn--danger:hover {
+    background: #fecaca;
+}
+
+/* EMPTY STATE message */
+.empty-state {
+    text-align: center;
+    padding: 2.5rem;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* UTILITY */
+.text-muted {
+    color: var(--text-muted);
+}
+
+/* INFO alert (blue) */
+.alert--info {
+    background: #eff6ff;
+    color: #1d4ed8;
+    border-color: #3b82f6;
+}
+
+
+/* ----------------------------------------------------------
+   9. RESPONSIVE (mobile-friendly)
+   On small screens, stack the panels vertically
+   ---------------------------------------------------------- */
+
+@media (max-width: 768px) {
+    .auth-container {
+        flex-direction: column;
+    }
+
+    /* On mobile, brand panel becomes a slim header strip */
+    .auth-panel--brand {
+        flex: 0 0 auto;
+        padding: 2rem 1.5rem;
+    }
+
+    .brand-title {
+        font-size: 1.8rem;
+    }
+
+    .auth-panel--form {
+        padding: 2rem 1.5rem;
+    }
+
+    .form-box {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        min-height: auto;
+        position: relative;
+        padding: 0.8rem;
+    }
+    .sidebar-nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 0.5rem 0;
+    }
+    .main-content {
+        margin-left: 0;
+        padding: 1rem;
+    }
+    .stat-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* ----------------------------------------------------------
+   CALENDAR (client/dashboard.php)
+   ---------------------------------------------------------- */
+
+.calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.cal-legend {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+}
+
+.cal-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 0.2rem;
+}
+
+.cal-dot--present { background: var(--success); }
+.cal-dot--today   { background: var(--accent); }
+.cal-dot--absent  { background: var(--border); }
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+}
+
+.cal-day-name {
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    padding: 0.3rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.cal-cell {
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background: var(--bg);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    position: relative;
+    transition: background 0.15s;
+}
+
+.cal-cell--empty {
+    background: transparent;
+}
+
+/* Green = attended */
+.cal-cell--present {
+    background: #dcfce7;
+    color: var(--success);
+    font-weight: 600;
+}
+
+/* Gold ring = today */
+.cal-cell--today {
+    outline: 2px solid var(--accent);
+    outline-offset: -2px;
+    color: var(--text);
+    font-weight: 700;
+}
+
+.cal-cell--present.cal-cell--today {
+    background: #dcfce7;
+    outline: 2px solid var(--accent);
+}
+
+.cal-num {
+    line-height: 1;
+}
+
+.cal-tick {
+    font-size: 0.6rem;
+    color: var(--success);
+    line-height: 1;
+}
+
+
+/* ----------------------------------------------------------
+   BURGER MENU (mobile sidebar toggle)
+   ---------------------------------------------------------- */
+
+/* The 3-line burger button — hidden on desktop */
+.burger-btn {
+    display: none;
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 200;
+    background: var(--primary);
+    border: none;
+    border-radius: 8px;
+    padding: 0.5rem 0.6rem;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.burger-btn span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--white);
+    border-radius: 2px;
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+/* Animate burger into X when sidebar is open */
+.burger-btn.is-open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.burger-btn.is-open span:nth-child(2) { opacity: 0; }
+.burger-btn.is-open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+/* Dark overlay behind sidebar on mobile */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 99;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.sidebar-overlay.is-visible {
+    display: block;
+    opacity: 1;
+}
+
+/* On mobile: show burger, hide sidebar by default */
+@media (max-width: 768px) {
+    .burger-btn {
+        display: flex;
+    }
+
+    .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 150;
+        position: fixed;
+    }
+
+    /* Slide sidebar in when open */
+    .sidebar.is-open {
+        transform: translateX(0);
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 1rem;
+        padding-top: 4rem; /* leave room for burger button */
+    }
+}
+
+
+/* ----------------------------------------------------------
+   BURGER MENU ON DESKTOP (collapsible sidebar)
+   ---------------------------------------------------------- */
+
+/* Show burger on ALL screen sizes now */
+.burger-btn {
+    display: flex !important;  /* override the mobile-only display:none */
+    top: 1rem;
+    left: 1rem;
+}
+
+/* When sidebar is collapsed, shrink it to just show icons */
+.sidebar.is-collapsed {
+    width: 64px;
+    overflow: hidden;
+}
+
+/* Hide text labels when collapsed */
+.sidebar.is-collapsed .sidebar-brand-name,
+.sidebar.is-collapsed .nav-item span:not(.nav-icon),
+.sidebar.is-collapsed .sidebar-logout {
+    display: none;
+}
+
+/* Center the nav icons when collapsed */
+.sidebar.is-collapsed .nav-item {
+    justify-content: center;
+    padding: 0.7rem;
+}
+
+.sidebar.is-collapsed .sidebar-brand {
+    justify-content: center;
+}
+
+/* Main content shifts when sidebar collapses on desktop */
+.main-content {
+    transition: margin-left 0.3s ease;
+}
+
+/* On desktop: collapsed sidebar = less margin */
+@media (min-width: 769px) {
+    .sidebar {
+        transition: width 0.3s ease;
+    }
+
+    /* Burger on desktop sits inside main content area, not fixed */
+    .burger-btn {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        z-index: 200;
+    }
+
+    /* Push content right to account for burger button when sidebar is collapsed */
+    .sidebar.is-collapsed ~ .main-content {
+        margin-left: 64px;
+    }
+
+    /* Normal expanded: content starts after full sidebar */
+    .sidebar:not(.is-collapsed) ~ .main-content {
+        margin-left: 240px;
+    }
+
+    /* On desktop sidebar is always visible — no slide-in/out */
+    .sidebar {
+        transform: none !important;
+    }
+
+    /* No overlay on desktop */
+    .sidebar-overlay {
+        display: none !important;
+    }
+}
+
+/* Keep mobile behavior intact */
+@media (max-width: 768px) {
+    .sidebar.is-collapsed {
+        width: 240px; /* don't collapse on mobile, just hide/show */
+    }
+    .sidebar.is-collapsed .sidebar-brand-name,
+    .sidebar.is-collapsed .nav-item span:not(.nav-icon),
+    .sidebar.is-collapsed .sidebar-logout {
+        display: unset;
+    }
+}
+
+
+/* ----------------------------------------------------------
+   STAT CARD VARIANTS (IN / OUT / Absent)
+   ---------------------------------------------------------- */
+
+/* Full-width card spanning both columns */
+.stat-grid--2col {
+    grid-template-columns: repeat(2, 1fr);
+    margin-bottom: 1rem;
+}
+
+.stat-card--full {
+    grid-column: 1 / -1;   /* span all columns */
+    text-align: center;
+}
+
+/* Solid green card when status is IN */
+.stat-card--in {
+    background: #16a34a;
+    border-left-color: #15803d;
+}
+.stat-card--in .stat-value,
+.stat-card--in .stat-label {
+    color: #ffffff;
+}
+
+/* Solid grey card when status is OUT */
+.stat-card--out {
+    background: #475569;
+    border-left-color: #334155;
+}
+.stat-card--out .stat-value,
+.stat-card--out .stat-label {
+    color: #ffffff;
+}
+
+/* Red-tinted card for absences */
+.stat-card--absent {
+    border-left-color: var(--error);
+}
+.stat-card--absent .stat-value {
+    color: var(--error);
+}
+
+/* Orange reset approval button */
+.btn--reset {
+    background: #fef3c7;
+    color: #92400e;
+    border: 1.5px solid #f59e0b;
+    font-weight: 500;
+}
+.btn--reset:hover {
+    background: #fde68a;
+}
+
+/* Reset requested badge */
+.badge--reset {
+    background: #fef3c7;
+    color: #92400e;
+    margin-left: 0.3rem;
+}

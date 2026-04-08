@@ -1,26 +1,28 @@
 <?php
+// admin/dashboard.php
+// first page the admin sees after logging in.
 // summary of total users, attendance today, currently in, recent activity feed
 
 require_once '../auth_guard.php';
-guardAdmin();           // hu u powszxc? admin dashboard lang 'to p're. pag ako nainis, di ko lagyan ng users to.
+guardAdmin();           // blocks anyone who isn't admin
 require_once '../config.php';
 
-// fetch from db yung stats
+// numbers for the stat cards
 
-// how many registered users (excluding admins)
+// count all registered users (excluding admins)
 $stmt = $pdo->query("SELECT COUNT(*) FROM users WHERE role != 'admin' AND is_registered = 1");
 $totalUsers = $stmt->fetchColumn();
 
-// timed in today. ilan daw present
+// Count how many people timed in today
 $stmt = $pdo->prepare("SELECT COUNT(*) FROM attendance WHERE date = CURDATE()");
 $stmt->execute();
 $todayCount = $stmt->fetchColumn();
 
-// guys, logout na sa bsrs. 
+// Count how many are currently "in" (timed in but not yet timed out)
 $stmt = $pdo->query("SELECT COUNT(*) FROM attendance WHERE date = CURDATE() AND time_out IS NULL");
 $currentlyIn = $stmt->fetchColumn();
 
-// recent lang to wala talagang silbi
+// Get the 10 most recent attendance records for the activity feed
 $stmt = $pdo->query("
     SELECT u.full_name, u.role, u.id_number,
            a.time_in, a.time_out, a.date
@@ -31,7 +33,6 @@ $stmt = $pdo->query("
 ");
 $recentLogs = $stmt->fetchAll();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,13 +42,21 @@ $recentLogs = $stmt->fetchAll();
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="icon" type="image/x-icon" href="../assets/img/icas1.jpg">
 </head>
 <body class="dashboard-page">
 
-    <aside class="sidebar">
+    <!-- SIDEBAR -->
+    <!-- BURGER BUTTON -->
+    <button class="burger-btn" id="burgerBtn" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+    </button>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <aside class="sidebar" id="sidebar">
         <div class="sidebar-brand">
             <span class="sidebar-brand-icon"><img src="../assets/img/icas1.jpg" alt="ICAS-MACOY Logo"></span>
-            <span class="sidebar-brand-name">QR ATTENDANCE</span>
+            <span class="sidebar-brand-name">QR Attendance</span>
         </div>
         <nav class="sidebar-nav">
             <a href="dashboard.php" class="nav-item active">
