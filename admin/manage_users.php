@@ -95,16 +95,16 @@ $users = $stmt->fetchAll();
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="icon" type="image/x-icon" href="../assets/img/icas1.jpg">
+    <link rel="icon" type="image/x-icon" href="../assets/img/icas1.png">
 </head>
 <body class="dashboard-page">
 
     <!-- SIDEBAR -->
     <!-- BURGER BUTTON -->
-    <button class="burger-btn" id="burgerBtn" aria-label="Toggle menu">
+    <!--<button class="burger-btn" id="burgerBtn" aria-label="Toggle menu">
         <span></span><span></span><span></span>
     </button>
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>-->
 
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-brand">
